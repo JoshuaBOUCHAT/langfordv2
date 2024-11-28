@@ -1,6 +1,9 @@
 use std::ops::Mul;
 
 #[derive(Clone, Debug, Hash, PartialEq, Eq)]
+
+///Représente un polynome si le bit 0 est occupé dans repr alors on a x1
+/// donc 1 * x1x3 donne  count:1 101
 pub struct Polynome {
     repr: u64,
     count: i32,
@@ -17,6 +20,9 @@ impl Polynome {
     }
     pub fn get_repr(&self) -> u64 {
         self.repr
+    }
+    pub fn get_count(&self) -> i32 {
+        return self.count;
     }
 }
 impl Mul<&Polynome> for &Polynome {
