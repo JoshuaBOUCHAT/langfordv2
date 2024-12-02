@@ -15,7 +15,7 @@ impl Polynome {
             count: 1,
         }
     }
-    pub fn add_count(&mut self, other: &Self) {
+    pub fn add_poly(&mut self, other: &Self) {
         self.count += other.count;
     }
     pub fn get_repr(&self) -> u64 {
@@ -23,6 +23,12 @@ impl Polynome {
     }
     pub fn get_count(&self) -> i32 {
         return self.count;
+    }
+    pub fn add_count(&mut self, count: i32) {
+        self.count += count;
+    }
+    pub fn get_parts(&self) -> (u64, i32) {
+        (self.repr, self.count)
     }
 }
 impl Mul<&Polynome> for &Polynome {
