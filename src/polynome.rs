@@ -1,4 +1,4 @@
-use std::ops::Mul;
+use std::{fmt::Display, ops::Mul};
 
 #[derive(Clone, Debug, Hash, PartialEq, Eq)]
 
@@ -41,5 +41,26 @@ impl Mul<&Polynome> for &Polynome {
             repr: self.repr | other.repr,
             count: self.count * other.count,
         })
+    }
+}
+const ALPHA: [char; 62] = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
+    'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b',
+    'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+    'v', 'w', 'x', 'y', 'z',
+];
+impl Display for Polynome {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut repr = self.get_repr();
+        let mut buffer = format!("{}_", self.get_count());
+        let mut i = 0;
+        while repr != 0 {
+            if repr & 1 != 0 {
+                buffer.push_str(&format!("{}x", ALPHA[i]));
+            }
+            repr >>= 1;
+            i += 1;
+        }
+        write!(f, "{}", &buffer)
     }
 }
