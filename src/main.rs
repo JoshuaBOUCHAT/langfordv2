@@ -26,9 +26,6 @@ fn sequential_compute() {
     let start: Vec<_> = get_polynomess();
 
     let langfords = Langford::new(start);
-    println!("{}", &langfords);
-    let res = langfords.solve(7) / 2;
-    println!("res: {res}")
 }
 //Génere (x0x2 x1x3 x2x4 x3x5) * (x0x3  x1x4 x2x5) * (x0x4 x1x5) pour N =3
 fn get_polynomess() -> Vec<Polynomes> {
